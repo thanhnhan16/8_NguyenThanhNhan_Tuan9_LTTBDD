@@ -10,14 +10,14 @@ import {
 } from "react-native";
 import React, { useEffect, useState } from "react";
 
-const Screen2 = () => {
+const Screen2 = ({ navigation }) => {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
 
   const getMovies = async () => {
     try {
       const response = await fetch(
-        "https://6544c50f5a0b4b04436cf1b9.mockapi.io/api/v1/users"
+        "https://6544aecc5a0b4b04436cbb37.mockapi.io/todo"
       );
       const json = await response.json();
       setData(json);
@@ -106,7 +106,7 @@ const Screen2 = () => {
                   resizeMode="contain"
                 ></Image>
                 <View style={{ marginTop: 50 }}>
-                  {item.tasks.map((item) => {
+                  {item.task.map((item) => {
                     return (
                       <ScrollView>
                         <View
@@ -156,6 +156,7 @@ const Screen2 = () => {
                   })}
                 </View>
                 <TouchableOpacity
+                  onPress={() => navigation.navigate("Screen3")}
                   style={{ alignItems: "center", marginTop: 20 }}
                 >
                   <Image
